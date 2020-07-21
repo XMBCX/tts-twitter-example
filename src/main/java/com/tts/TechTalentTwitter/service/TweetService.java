@@ -30,22 +30,22 @@ public class TweetService {
     @Autowired
     private TagRepository tagRepository;
 
-    public List<Tweet> findAll() {
+    public List<TweetDisplay> findAll() {
         List<Tweet> tweets = tweetRepository.findAllByOrderByCreatedAtDesc();
         return formatTweets(tweets);
     }
 
-    public List<Tweet> findAllByUser(User user) {
+    public List<TweetDisplay> findAllByUser(User user) {
         List<Tweet> tweets = tweetRepository.findAllByUserOrderByCreatedAtDesc(user);
-        return tweets;
+        return formatTweets(tweets);
     }
 
-    public List<Tweet> findAllByUsers(List<User> users) {
+    public List<TweetDisplay> findAllByUsers(List<User> users) {
         List<Tweet> tweets = tweetRepository.findAllByUserInOrderByCreatedAtDesc(users);
-        return tweets;
+        return formatTweets(tweets);
     }
 
-    public List<Tweet> findAllWithTag(String tag) {
+    public List<TweetDisplay> findAllWithTag(String tag) {
         List<Tweet> tweets = tweetRepository.findByTags_PhraseOrderByCreatedAtDesc(tag);
         return formatTweets(tweets);
     }
