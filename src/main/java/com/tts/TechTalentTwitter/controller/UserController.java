@@ -60,10 +60,11 @@ public class UserController {
 	@GetMapping(value = "/users")
 	public String getUsers(@RequestParam(value = "filter", required = false) String filter, Model model) {
 		List<User> users = new ArrayList<User>();
+
 		User loggedInUser = userService.getLoggedInUser();
+
 		List<User> usersFollowing = loggedInUser.getFollowing();
 		List<User> usersFollowers = loggedInUser.getFollowers();
-		SetFollowingStatus(users, usersFollowing, model);
 		if (filter == null) {
 			filter = "all";
 		}
@@ -78,7 +79,10 @@ public class UserController {
 			model.addAttribute("filter", "all");
 		}
 		model.addAttribute("users", users);
+
 		SetTweetCounts(users, model);
+		SetFollowingStatus(users, usersFollowing, model);
+
 		return "users";
 	}
 
