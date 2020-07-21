@@ -18,7 +18,7 @@
 
     <!-- If No Tweets in Feed -->
     <div th:if="${#lists.isEmpty(tweetList)}">
-        <h2>No Tweets in your feed!</h2>
+        <h2><center>No Tweets in your feed!</h2></center>
       </div>
       <!--  -->
 
@@ -43,10 +43,10 @@
     </div>
 
     <div th:if="${#lists.isEmpty(tweetList) and filter == 'all'}">
-      <h3>No tweets have been created yet</h3>
+      <h3><center>No tweets have been created yet</h3></center>
   </div>
   <div th:if="${#lists.isEmpty(tweetList) and filter == 'following'}">
-      <h3>No tweets have been created by your followers</h3>
+      <center><h3>No tweets have been created by your followers</h3></center>
   </div>
   </body>
 </html>
