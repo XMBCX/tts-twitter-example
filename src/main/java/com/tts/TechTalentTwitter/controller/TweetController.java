@@ -28,12 +28,12 @@ public class TweetController {
     @Autowired
     private TweetService tweetService;
 
-    // @GetMapping(value = { "/tweets", "/" })
-    // public String getFeed(Model model) {
-    // List<TweetDisplay> tweets = tweetService.findAll();
-    // model.addAttribute("tweetList", tweets);
-    // return "feed";
-    // }
+    @GetMapping(value = { "/tweets", "/" })
+    public String getFeed(Model model) {
+        List<TweetDisplay> tweets = tweetService.findAll();
+        model.addAttribute("tweetList", tweets);
+        return "feed";
+    }
 
     @GetMapping
     public String getFeed(@RequestParam(value = "filter", required = false) String filter, Model model) {
