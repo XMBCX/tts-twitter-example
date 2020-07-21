@@ -9,10 +9,9 @@
 <body>
   <div th:replace="/fragments/navbar :: navbar"></div>
   <ul class="nav nav-tabs">
-    <li role="presentation" th:classappend="${filter == 'all' ? 'active' : '' }">
-      <a href="/tweets">All</a></li>
-    <li role="presentation" th:classappend="${filter == 'following' ? 'active' : '' }">
-      <a href="/tweets?filter=following">Following</a></li>
+    <li role="presentation" th:classappend="${filter == 'all' ? 'active' : '' }"><a href="/tweets">All</a></li>
+    <li role="presentation" th:classappend="${filter == 'following' ? 'active' : '' }"><a
+        href="/tweets?filter=following">Following</a></li>
   </ul><br />
   <div class="container">
     <h2>Tweets</h2>
