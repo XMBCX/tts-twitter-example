@@ -50,11 +50,6 @@ public class TweetService {
         return formatTweets(tweets);
     }
 
-    // public List<Tweet> findAllByFollower(List<User> followers){
-    // List<Tweet> tweets = tweetRepository.findAllBy
-    // return formatTweets(tweets);
-    // }
-
     public void save(Tweet tweet) {
         handleTags(tweet);
         tweetRepository.save(tweet);

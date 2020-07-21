@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.tts.TechTalentTwitter.model.Tweet;
+import com.tts.TechTalentTwitter.model.TweetDisplay;
 import com.tts.TechTalentTwitter.model.User;
 import com.tts.TechTalentTwitter.service.TweetService;
 import com.tts.TechTalentTwitter.service.UserService;
@@ -27,9 +28,17 @@ public class TweetController {
 
     @GetMapping(value = { "/tweets", "/" })
     public String getFeed(Model model) {
-        List<Tweet> tweets =  tweetService.findAll();
+        List<TweetDisplay> tweets = tweetService.findAll();
         model.addAttribute("tweetList", tweets);
         return "feed";
+    }
+
+    @GetMapping(value = "/tweets/{tag}")
+    public String getTweetsByTag(@PathVariable(value = "tag") String tag, Model model) {
+        List<TweetDisplay> tweets = tweetService.findAllWithTag(tag);
+        model.addAttribute("tweetList", tweets);
+        model.addAttribute("tag", tag);
+        return "taggedTweets";
     }
 
     @GetMapping(value = "/tweets/new")
@@ -48,13 +57,5 @@ public class TweetController {
             model.addAttribute("tweet", new Tweet());
         }
         return "newTweet";
-    }
-
-    @GetMapping(value = "/tweets/{tag}")
-    public String getTweetsByTag(@PathVariable(value = "tag") String tag, Model model) {
-        List<Tweet> tweets = tweetService.findAllWithTag(tag);
-        model.addAttribute("tweetList", tweets);
-        model.addAttribute("tag", tag);
-        return "taggedTweets";
     }
 }
